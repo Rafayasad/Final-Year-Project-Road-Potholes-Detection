@@ -8,7 +8,9 @@ import {
     ContributionGraph,
     StackedBarChart
 } from "react-native-chart-kit";
+import styles from './Style';
 // import MapView from 'react-native-maps';
+// import { PROVIDER_GOOGLE} from 'react-native-maps';
 
 function Report() {
     const windowWidth = Dimensions.get('window').width;
@@ -22,53 +24,58 @@ function Report() {
     const chartConfig = {
         backgroundGradientFrom: "#1E2923",
         backgroundGradientFromOpacity: 0,
-        backgroundGradientTo: "white",
+        backgroundGradientTo: "#08130D",
         backgroundGradientToOpacity: 0.5,
         color: (opacity = 1) => `rgba(0, 0, 0, ${opacity})`,
+        // color: 'white',
         strokeWidth: 2, // optional, default 3
         barPercentage: 0.5,
         useShadowColorFromDataset: false, // optional
     };
 
     return (
-        <View >
+        <View style={styles.main_view} >
             <ScrollView>
-                <View style={{ backgroundColor: 'red', height: windowHeight * 0.1, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                    <Text>Report Details</Text>
+                <View style={styles.header}>
+                    <Text style={styles.header_text}>Report Details</Text>
                 </View>
-                <View style={{ backgroundColor: 'yellow', height: windowHeight * 0.05, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                    <Text>Road Name</Text>
+                <View style={styles.sub_header}>
+                    <Text style={styles.sub_header_text}>Road Name</Text>
                 </View>
-                <View style={{ height: windowHeight * 0.4, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                    <ProgressChart
-                        data={data}
-                        width={windowWidth * 0.7}
-                        height={windowHeight * 0.3}
-                        strokeWidth={20}
-                        radius={50}
-                        chartConfig={chartConfig}
-                        hideLegend={true}
-                    />
-                    <Text>Poth Holes Detected : 70%</Text>
+                <View style={styles.graph_view}>
+                    <View style={styles.graph_view_1}>
+                    {/* <View style={styles.graph_view_2}></View> */}
+                        <ProgressChart
+                            data={data}
+                            width={windowWidth * 0.7}
+                            height={windowHeight * 0.3}
+                            strokeWidth={20}
+                            radius={50}
+                            chartConfig={chartConfig}
+                            hideLegend={true}
+                        />
+                        <Text style={styles.graph_view_1_text}>Poth Holes Detected : 70%</Text> 
+                    </View>
                 </View>
-                <View style={{ backgroundColor: 'yellow', height: windowHeight * 0.3, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                <View style={styles.map_view} >
                     <Text>Map View</Text>
-                    {/* <MapView
+                  {/* <MapView
+                  provider={PROVIDER_GOOGLE}
                         initialRegion={{
                             latitude: 37.78825,
                             longitude: -122.4324,
                             latitudeDelta: 0.0922,
                             longitudeDelta: 0.0421,
                         }}
-                    /> */}
+                    />  */}
                 </View>
-                <View  style={{ backgroundColor: 'red', height: windowHeight * 0.05, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                <Text>Date : 20 Dec 2000</Text>
+                <View style={styles.date_view}>
+                    <Text>Date : 20 Dec 2000</Text>
                 </View>
-                <View  style={{ backgroundColor: 'purple', height: windowHeight * 0.05, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                <View style={styles.report_btn_view} >
                     <TouchableOpacity>
                         <Text>
-                        PDF Report
+                            PDF Report
                         </Text>
                     </TouchableOpacity>
                 </View>
