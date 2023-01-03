@@ -1,7 +1,6 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import MapView, { enableLatestRenderer , PROVIDER_GOOGLE } from 'react-native-maps';
-// import  {  } from 'react-native-maps';
 
 const styles = StyleSheet.create({
   container: {

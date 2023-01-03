@@ -1,10 +1,10 @@
 import React from "react";
 import {View,Text} from 'react-native';
 
-const BottomStack = () =>{
+const AppStack = () =>{
     return(
         <View>
-            <Text>bottom stack</Text>
+            <Text>stack</Text>
         </View>
     )
 }
