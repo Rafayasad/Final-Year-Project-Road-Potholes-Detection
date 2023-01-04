@@ -2,7 +2,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
 import Home from '../screens/home.screen';
-import Reports from '../screens/reports.screen';
+import Report from '../screens/reports.screen';
 import Map from '../screens/mapView.screen';
 import Recents from '../screens/recents.screen';
 
@@ -23,7 +23,7 @@ const Tabs = () => {
                         left: 20,
                         right: 20,
                         elevation: 0,
-                        backgroundColor: "#O13237",
+                        backgroundColor: "#013237",
                         borderRadius: 15,
                         height: 66,
                         // width:396,
@@ -72,7 +72,7 @@ const Tabs = () => {
                     }}
                 />
                 <Tab.Screen name='Reports'
-                    component={Reports}
+                    component={Report}
                     options={{
                         tabBarIcon: ({ focused, color, size }) => {
                             return (
