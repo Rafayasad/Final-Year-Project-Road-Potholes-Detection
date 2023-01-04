@@ -7,7 +7,7 @@ export default function Home() {
     return (
         <View style={{ backgroundColor: Color.secondaryColor, flex: 1 }}>
             <View style={{ backgroundColor: "red", flex: 1, paddingLeft:}}>
-
+                <Text>s</Text>
             </View>
             {/* <FlatButton text={"Hello"} bgColor={Color.primaryColor} textColor={Color.darkColor} /> */}
         </View>
