@@ -1,12 +1,14 @@
 import React from 'react';
-import { View } from 'react-native';
-import Report from './src/screens/Reports.Screen';
+import { View, Text, StyleSheet } from 'react-native';
+import MainNavigation from './src/navigation';
+import Tabs from './src/navigation/bottom_tab.navigation';
 
 function App() {
   return (
-    <View style={{flex:1}}>
-      <Report />
-    </View>
+    <>
+    <Tabs />
+        {/* <MainNavigation />     */}
+    </>
   )
 }
 
