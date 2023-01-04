@@ -3,30 +3,30 @@ import { View, StyleSheet, Dimensions, TouchableOpacity } from 'react-native';
 import Text from '../components/elements/Text';
 import MapView, { enableLatestRenderer, PROVIDER_GOOGLE } from 'react-native-maps';
 import { ScrollView } from 'react-native-gesture-handler';
-// import {
-//     LineChart,
-//     BarChart,
-//     PieChart,
-//     ProgressChart,
-//     ContributionGraph,
-//     StackedBarChart
-// } from "react-native-chart-kit";
+import {
+    LineChart,
+    BarChart,
+    PieChart,
+    ProgressChart,
+    ContributionGraph,
+    StackedBarChart
+} from "react-native-chart-kit";
 
 function Report() {
-    // const data = {
-    //     labels: ["Swim", "Bike", "Run"], // optional
-    //     data: [0.4, 0.6, 0.8]
-    // };
-    // const chartConfig = {
-    //     backgroundGradientFrom: "#1E2923",
-    //     backgroundGradientFromOpacity: 0,
-    //     backgroundGradientTo: "#08130D",
-    //     backgroundGradientToOpacity: 0.5,
-    //     color: (opacity = 1) => `rgba(26, 255, 146, ${opacity})`,
-    //     strokeWidth: 2, // optional, default 3
-    //     barPercentage: 0.5,
-    //     useShadowColorFromDataset: false // optional
-    // };
+    const data = {
+        labels: ["Swim", "Bike", "Run"], // optional
+        data: [0.4, 0.6, 0.8]
+    };
+    const chartConfig = {
+        backgroundGradientFrom: "#1E2923",
+        backgroundGradientFromOpacity: 0,
+        backgroundGradientTo: "#08130D",
+        backgroundGradientToOpacity: 0.5,
+        color: (opacity = 1) => `rgba(26, 255, 146, ${opacity})`,
+        strokeWidth: 2, // optional, default 3
+        barPercentage: 0.5,
+        useShadowColorFromDataset: false // optional
+    };
     return (
         <View style={styles.main_view}>
             <ScrollView>
@@ -38,7 +38,7 @@ function Report() {
                         <View style={styles.graphs_view}>
                             <Text size="lg" weight="heavy" title="Life Span" />
                             <View style={styles.graph_view}>
-                                {/* <ProgressChart
+                                <ProgressChart
                                     data={data}
                                     width='100%'
                                     height={220}
@@ -46,7 +46,7 @@ function Report() {
                                     radius={32}
                                     chartConfig={chartConfig}
                                     hideLegend={false}
-                                /> */}
+                                />
                             </View>
                             <Text size="lg" weight="heavy" title="Poth holes" />
                             <View style={styles.graph_view}>
