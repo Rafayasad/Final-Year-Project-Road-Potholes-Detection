@@ -40,7 +40,7 @@ function Report() {
                             <View style={styles.graph_view}>
                                 <ProgressChart
                                     data={data}
-                                    width='100%'
+                                    width={200}
                                     height={220}
                                     strokeWidth={16}
                                     radius={32}
