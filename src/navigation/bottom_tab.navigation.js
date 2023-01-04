@@ -23,7 +23,7 @@ const Tabs = () => {
                         left: 20,
                         right: 20,
                         elevation: 0,
-                        backgroundColor: "#O13237",
+                        backgroundColor: "#013237",
                         borderRadius: 15,
                         height: 66,
                         // width:396,
