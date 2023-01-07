@@ -4,6 +4,7 @@ import Text from '../components/elements/Text';
 import MapView, {
   enableLatestRenderer,
   PROVIDER_GOOGLE,
+  Marker,
 } from 'react-native-maps';
 import {ScrollView} from 'react-native-gesture-handler';
 import {
@@ -23,23 +24,22 @@ function Report() {
     data: [0.4],
   };
   const data2 = {
-    labels: ["0", "20", "40", "60", "80", "100"],
+    labels: ['0', '20', '40', '60', '80', '100'],
     datasets: [
       {
         data: [0, 80],
         color: (opacity = 1) => `rgba(134, 65, 244, ${opacity})`, // optional
-        strokeWidth: 2 // optional
-      }
-    ]
+        strokeWidth: 2, // optional
+      },
+    ],
   };
 
   const chartConfig = {
     backgroundGradientFrom: '#1E2923',
     backgroundGradientFromOpacity: 0,
-    backgroundGradientTo: '#FCDC73',
-    // backgroundColor: '#4CA771',
+    backgroundGradientTo: '#EAF9E7',
     backgroundGradientToOpacity: 0.5,
-    color: (opacity = 1) => `rgba(25, 57, 72, ${opacity})`,
+    color: (opacity = 1) => `rgba(1, 50, 55, ${opacity})`,
     strokeWidth: 2, // optional, default 3
     barPercentage: 0.5,
     useShadowColorFromDataset: false, // optional
@@ -53,30 +53,28 @@ function Report() {
           </View>
           <View style={styles.report_view}>
             <View style={styles.graphs_view}>
-              <Text size="lg" weight="heavy" title="Poth holes" />
               <View style={styles.graph_view}>
                 <ProgressChart
                   data={data}
-                  width={windowWidth * 0.9}
-                  height={windowHeight * 0.25}
+                  width={windowWidth * 0.45}
+                  height={windowHeight * 0.21}
                   strokeWidth={16}
                   radius={40}
                   chartConfig={chartConfig}
                   hideLegend={true}
                 />
-                <Text size="sm" weight="lite" title="80%" />
+                <Text size="sm" weight="lite" title="80% Poth holes" />
               </View>
-              <Text size="lg" weight="heavy" title="Life Span" />
               <View style={styles.graph_view}>
                 <LineChart
                   data={data2}
-                  width={windowWidth * 0.9}
-                  height={windowHeight * 0.25}
+                  width={windowWidth * 0.45}
+                  height={windowHeight * 0.21}
                   verticalLabelRotation={0}
                   chartConfig={chartConfig}
                   bezier
                 />
-                  <Text size="sm" weight="lite" title="80%" />
+                <Text size="sm" weight="lite" title="80% Life Span" />
               </View>
             </View>
             <View style={styles.map_view}>
@@ -88,7 +86,14 @@ function Report() {
                   longitude: -122.4324,
                   latitudeDelta: 0.015,
                   longitudeDelta: 0.0121,
-                }}></MapView>
+                }}>
+                <Marker
+                  // key={index}
+                  coordinate={{latitude: 37.78825, longitude: -122.4324}}
+                  title={'asd'}
+                  description={'asnl'}
+                />
+              </MapView>
             </View>
             <View style={styles.date_view}>
               <Text size="sm" weight="heavy" title="Dated :" />
@@ -100,7 +105,7 @@ function Report() {
               </TouchableOpacity>
             </View>
           </View>
-          <View style={styles.footer}></View>
+          {/* <View style={styles.footer}></View> */}
         </View>
       </ScrollView>
     </View>
@@ -112,7 +117,7 @@ export default Report;
 const styles = StyleSheet.create({
   main_view: {
     flex: 1,
-    backgroundColor: '#FCDC73',
+    backgroundColor: '#C0E6BA',
   },
   header: {
     flex: 0.1,
@@ -127,34 +132,33 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     marginVertical: 10,
-    height: 60,
+    height: windowHeight * 0.05,
   },
   report_view: {
     width: windowWidth,
-    height: windowHeight,
-    backgroundColor: 'white',
-    borderRadius: 40,
+    height: windowHeight * 0.9,
     alignItems: 'center',
   },
   graphs_view: {
-    width: '90%',
-    height: '60%',
-    // backgroundColor: 'red',
+    width: '100%',
+    height: windowHeight * 0.3,
+    flexDirection: 'row',
     justifyContent: 'space-between',
-    alignItems: 'center',
   },
   graph_view: {
-    width: '100%',
-    height: '45%',
-    justifyContent: 'center',
+    width: '48%',
+    height: '90%',
+    justifyContent: 'space-between',
+    justifyContent: 'space-around',
     alignItems: 'center',
-    // backgroundColor: 'blue'
+    backgroundColor: '#EAF9E7',
+    borderRadius: 10,
   },
   map_view: {
-    width: '90%',
+    width: '100%',
     height: '30%',
     alignItems: 'center',
-    justifyContent: 'space-around',
+    justifyContent: 'space-between',
   },
   date_view: {
     width: '90%',
@@ -176,5 +180,6 @@ const styles = StyleSheet.create({
   map: {
     width: '100%',
     height: '80%',
+    borderRadius: 10,
   },
 });
