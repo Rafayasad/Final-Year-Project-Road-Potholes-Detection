@@ -7,6 +7,8 @@ import Map from '../screens/mapView.screen';
 import Recents from '../screens/recents.screen';
 
 import IconHome from 'react-native-vector-icons/MaterialCommunityIcons';
+import { Color } from '../components/theme/colors';
+import { Header } from '../components/modules/header';
 
 const Tab = createBottomTabNavigator();
 
@@ -16,14 +18,16 @@ const Tabs = () => {
             <Tab.Navigator
                 screenOptions={{
                     tabBarShowLabel: false,
-                    headerShown: false,
+                    // headerShown: false,
                     tabBarStyle: {
                         position: "absolute",
-                        bottom: 25,
+                        opacity: .9,
+                        bottom: 15,
                         left: 20,
                         right: 20,
                         elevation: 0,
-                        backgroundColor: "#013237",
+                        backgroundColor: 'rgba(52, 52, 52, 0.9)',
+                        // backgroundColor: Color.darkColor,
                         borderRadius: 15,
                         height: 66,
                         // width:396,
@@ -35,11 +39,13 @@ const Tabs = () => {
                     name='Home'
                     component={Home}
                     options={{
+                        header: () => <Header title={"HOME"} />,
+                        // headerTitle,
                         tabBarIcon: ({ focused, color, size }) => {
                             return (
                                 <>
-                                    <IconHome name={focused ? "home" : "home-outline"} color={focused ? "#E33224" : "#8F8F8F"} size={25} />
-                                    <Text style={{ fontSize: 12, color: focused ? '#E33224' : "#8F8F8F" }}>Home</Text>
+                                    <IconHome name={focused ? "home" : "home-outline"} color={focused ? Color.primaryColor : Color.dangerColor} size={25} />
+                                    <Text style={{ fontSize: 12, color: focused ? Color.primaryColor : Color.dangerColor }}>Home</Text>
                                 </>
                             )
                         }
@@ -48,11 +54,12 @@ const Tabs = () => {
                 <Tab.Screen name='Mapview'
                     component={Map}
                     options={{
+                        headerShown:false,
                         tabBarIcon: ({ focused, color, size }) => {
                             return (
                                 <>
-                                    <IconHome name={focused ? "home" : "home-outline"} color={focused ? "#E33224" : "#8F8F8F"} size={25} />
-                                    <Text style={{ fontSize: 12, color: focused ? '#E33224' : "#8F8F8F" }}>MapView</Text>
+                                    <IconHome name={focused ? "map-marker" : "map-marker-outline"} color={focused ? Color.primaryColor : Color.dangerColor} size={25} />
+                                    <Text style={{ fontSize: 12, color: focused ? Color.primaryColor : Color.dangerColor }}>MapView</Text>
                                 </>
                             )
                         }
@@ -64,8 +71,8 @@ const Tabs = () => {
                         tabBarIcon: ({ focused, color, size }) => {
                             return (
                                 <>
-                                    <IconHome name={focused ? "home" : "home-outline"} color={focused ? "#E33224" : "#8F8F8F"} size={25} />
-                                    <Text style={{ fontSize: 12, color: focused ? '#E33224' : "#8F8F8F" }}>Recents</Text>
+                                    <IconHome name={focused ? "home" : "home-outline"} color={focused ? Color.primaryColor : Color.dangerColor} size={25} />
+                                    <Text style={{ fontSize: 12, color: focused ? Color.primaryColor : Color.dangerColor }}>Recents</Text>
                                 </>
                             )
                         }
@@ -77,8 +84,8 @@ const Tabs = () => {
                         tabBarIcon: ({ focused, color, size }) => {
                             return (
                                 <>
-                                    <IconHome name={focused ? "home" : "home-outline"} color={focused ? "#E33224" : "#8F8F8F"} size={25} />
-                                    <Text style={{ fontSize: 12, color: focused ? '#E33224' : "#8F8F8F" }}>Reports</Text>
+                                    <IconHome name={focused ? "home" : "home-outline"} color={focused ? Color.primaryColor : Color.dangerColor} size={25} />
+                                    <Text style={{ fontSize: 12, color: focused ? Color.primaryColor : Color.dangerColor }}>Reports</Text>
                                 </>
                             )
                         }
