@@ -8,6 +8,7 @@ import Recents from '../screens/recents.screen';
 
 import IconHome from 'react-native-vector-icons/MaterialCommunityIcons';
 import { Color } from '../components/theme/colors';
+import { Header } from '../components/modules/header';
 
 const Tab = createBottomTabNavigator();
 
@@ -17,7 +18,7 @@ const Tabs = () => {
             <Tab.Navigator
                 screenOptions={{
                     tabBarShowLabel: false,
-                    headerShown: false,
+                    // headerShown: false,
                     tabBarStyle: {
                         position: "absolute",
                         opacity: .9,
@@ -38,6 +39,8 @@ const Tabs = () => {
                     name='Home'
                     component={Home}
                     options={{
+                        header: () => <Header title={"HOME"} />,
+                        // headerTitle,
                         tabBarIcon: ({ focused, color, size }) => {
                             return (
                                 <>
@@ -51,6 +54,7 @@ const Tabs = () => {
                 <Tab.Screen name='Mapview'
                     component={Map}
                     options={{
+                        headerShown:false,
                         tabBarIcon: ({ focused, color, size }) => {
                             return (
                                 <>

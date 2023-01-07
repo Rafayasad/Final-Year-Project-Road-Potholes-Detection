@@ -13,11 +13,12 @@ const styles = (props) => StyleSheet.create({
         borderRadius: 10,
         height: 50,
         width: '100%',
-        backgroundColor: props
+        backgroundColor: props,
+        // marginTop: props
     }
 })
 
-const FlatButton = ({ text, bgColor, textColor }) => {
+const FlatButton = ({ text, bgColor, textColor, margintop }) => {
     return (
         <TouchableOpacity>
             <View style={styles(bgColor).main}>
