@@ -6,13 +6,11 @@ import { Color } from '../theme/colors';
 
 const DetectionCard = ({ cardTitle, cardContent, source, }) => {
     return (
-        <Card style={{ padding: 10 }}>
-            <Card.Cover source={{ uri: 'https://picsum.photos/700' }} />
-            <Text title={"card title"} size={"lg"} />
-            <Text title={"card content"} size={"sm"} />
-            {/* <View> */}
-            <FlatButton text={"Detect"} bgColor={Color.dangerColor} textColor={Color.darkColor} margintop={5} />
-            {/* </View> */}
+        <Card style={{ padding: 10,marginBottom:10,backgroundColor:Color.primaryColor }}>
+            <Card.Cover source={{ uri: source }} />
+            <Text title={cardTitle} size={"lg"} weight={"heavy"} color={Color.darkColor} />
+            <Text title={cardContent} size={"sm"} weight={"lite"} color={Color.darkColor} />
+            <FlatButton text={"DETECT"} bgColor={Color.dangerColor} textColor={Color.darkColor} />
         </Card>
     )
 }

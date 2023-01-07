@@ -14,7 +14,7 @@ const styles = (props) => StyleSheet.create({
         height: 50,
         width: '100%',
         backgroundColor: props,
-        // marginTop: props
+        marginTop:5
     }
 })
 

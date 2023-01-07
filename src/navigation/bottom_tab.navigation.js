@@ -27,7 +27,6 @@ const Tabs = () => {
                         right: 20,
                         elevation: 0,
                         backgroundColor: 'rgba(52, 52, 52, 0.9)',
-                        // backgroundColor: Color.darkColor,
                         borderRadius: 15,
                         height: 66,
                         // width:396,
