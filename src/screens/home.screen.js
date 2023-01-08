@@ -1,18 +1,19 @@
 import React from "react";
-import { View, StyleSheet } from "react-native";
+import { View, StyleSheet, ScrollView } from "react-native";
 import FlatButton from "../components/elements/FlatButton";
 import { Color } from "../components/theme/colors";
-import { Width } from "../components/theme/dimensions";
+import { Height, Width } from "../components/theme/dimensions";
 import Text from "../components/elements/Text";
 import DetectionCard from "../components/modules/card";
 
 const styles = StyleSheet.create({
     container: {
         backgroundColor: Color.secondaryColor,
-        flex: 1
+        height: Height
     },
     subContainer: {
-        flex: 1,
+        height: Height,
+        marginBottom: Height * .06,
         marginLeft: Width * .03,
         marginRight: Width * .03
     }
@@ -20,12 +21,26 @@ const styles = StyleSheet.create({
 
 export default function Home() {
     return (
-        <View style={styles.container}>
+        <ScrollView style={styles.container}>
             <View style={styles.subContainer}>
-                <Text title={"hello"} size={"sm"} />
-            <DetectionCard />
+                <View>
+                    <Text title={"Welcome,"} size={"xl"} weight={"lite"} color={Color.darkColor} />
+                </View>
+                <View style={{ marginBottom: 10 }}>
+                    <Text title={"Hamad melay"} size={"lg"} weight={"lite"} color={Color.darkColor} />
+                </View>
+                <DetectionCard
+                    source={'https://miro.medium.com/max/1200/0*MAFFN_XvQDlTyVUZ.jpg'}
+                    cardTitle={"Detection via photos"}
+                    cardContent={"card content"}
+                />
+                <DetectionCard
+                    cardTitle={"Detection via video"}
+                    cardContent={"card content"}
+                    sourceType={"video"}
+                />
             </View>
             {/* <FlatButton text={"Hello"} bgColor={Color.primaryColor} textColor={Color.darkColor} /> */}
-        </View>
+        </ScrollView>
     )
 }
