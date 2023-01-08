@@ -13,7 +13,7 @@ const styles = StyleSheet.create({
     },
     subContainer: {
         height: Height,
-        marginBottom: Height * .08,
+        marginBottom: Height * .06,
         marginLeft: Width * .03,
         marginRight: Width * .03
     }
@@ -30,14 +30,14 @@ export default function Home() {
                     <Text title={"Hamad melay"} size={"lg"} weight={"lite"} color={Color.darkColor} />
                 </View>
                 <DetectionCard
-                    source={'https://picsum.photos/700'}
+                    source={'https://miro.medium.com/max/1200/0*MAFFN_XvQDlTyVUZ.jpg'}
                     cardTitle={"Detection via photos"}
                     cardContent={"card content"}
                 />
                 <DetectionCard
-                    source={'https://picsum.photos/700'}
                     cardTitle={"Detection via video"}
                     cardContent={"card content"}
+                    sourceType={"video"}
                 />
             </View>
             {/* <FlatButton text={"Hello"} bgColor={Color.primaryColor} textColor={Color.darkColor} /> */}
