@@ -8,7 +8,7 @@ export const fetchImageApi = async data => {
     method: 'POST',
     headers: {
       'Content-Type': 'multiple/form-data',
-      accept: 'application/json',
+      Accept: 'application/json',
     },
     body: data,
   })

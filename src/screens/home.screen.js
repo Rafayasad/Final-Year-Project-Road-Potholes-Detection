@@ -48,9 +48,7 @@ export default function Home() {
             .then(ress => {
               console.log('agaya', ress);
             })
-            .catch(error => {
-              console.log('nahi aya', error);
-            });
+            .catch((err)=>console.log("err",err.message))
         });
   };
 
