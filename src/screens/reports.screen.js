@@ -48,11 +48,11 @@ function Report() {
     barPercentage: 0.5,
     useShadowColorFromDataset: false, // optional
   };
-  return (
-    <View style={styles.main_view}>
+    return (
+        <View style={styles.main_view}>
       <ScrollView>
-        <View style={styles.container}>
-          <View style={styles.road_name_view}>
+            <View style={styles.container}>
+                <View style={styles.road_name_view}>
             <IconHome
               style={{marginRight: 5}}
               name="road-variant"
@@ -65,9 +65,9 @@ function Report() {
               title="Road Name"
               color={'#013237'}
             />
-          </View>
+                </View>
           <View style={styles.report_view}>
-            <View style={styles.graphs_view}>
+                <View style={styles.graphs_view}>
               <Card style={styles.graph_view}>
                 <ProgressChart
                   data={data}
@@ -101,7 +101,7 @@ function Report() {
                   color={'#013237'}
                 />
               </Card>
-            </View>
+                </View>
             <View style={styles.map_view}>
               <Text
                 size="lg"
@@ -110,12 +110,12 @@ function Report() {
                 color={'#013237'}
               />
               <MapView
-                style={styles.map}
-                region={{
-                  latitude: 37.78825,
-                  longitude: -122.4324,
-                  latitudeDelta: 0.015,
-                  longitudeDelta: 0.0121,
+        style={styles.map}
+        region={{
+          latitude: 37.78825,
+          longitude: -122.4324,
+          latitudeDelta: 0.015,
+          longitudeDelta: 0.0121,
                 }}>
                 <Marker
                   // key={index}
@@ -124,7 +124,7 @@ function Report() {
                   description={'Potholes: 80%'}
                 />
               </MapView>
-            </View>
+        </View>
             <View style={styles.date_view}>
               <Text
                 size="sm"
@@ -161,23 +161,23 @@ function Report() {
 export default Report;
 
 const styles = StyleSheet.create({
-  main_view: {
-    flex: 1,
+    main_view: {
+        flex: 1,
     backgroundColor: '#C0E6BA',
-  },
-  header: {
-    flex: 0.1,
-    justifyContent: 'center',
+    },
+    header: {
+        flex: 0.1,
+        justifyContent: 'center',
     alignItems: 'center',
-  },
-  container: {
-    flex: 0.8,
+    },
+    container: {
+        flex: 0.8,
     alignItems: 'center',
-  },
-  road_name_view: {
+    },
+    road_name_view: {
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'center',
+        justifyContent: 'center',
     marginVertical: 15,
     height: windowHeight * 0.05,
     // backgroundColor:'red'
@@ -185,10 +185,10 @@ const styles = StyleSheet.create({
   report_view: {
     width: windowWidth,
     height: windowHeight * 0.65,
-    alignItems: 'center',
+        alignItems: 'center',
     // backgroundColor:'red'
-  },
-  graphs_view: {
+    },
+    graphs_view: {
     width: '100%',
     height: windowHeight * 0.3,
     flexDirection: 'row',
