@@ -6,6 +6,7 @@ import {Height, Width} from '../components/theme/dimensions';
 import Text from '../components/elements/Text';
 import DetectionCard from '../components/modules/card';
 import ImagePicker from 'react-native-image-crop-picker';
+import {fetchImageApi} from '../config/api/api-service';
 
 const styles = StyleSheet.create({
   container: {
@@ -33,12 +34,29 @@ export default function Home() {
       : ImagePicker.openPicker({
           multiple: true,
         }).then(images => {
-          console.log(images);
+          // console.log(images);
           setPhotosArray(images);
+          const bodyFormData = new FormData();
+          bodyFormData.append('image', {
+            uri: images[0].path,
+            name: images[0].path.split('/').pop(),
+            type: images[0].mime,
+          });
+          bodyFormData.append('status', 'pothole');
+          fetchImageApi(bodyFormData)
+            .then(response => response.json())
+            .then(ress => {
+              console.log('agaya', ress);
+            })
+            .catch(error => {
+              console.log('nahi aya', error);
+            });
         });
   };
 
-  {console.log("photos",photosArray)}
+  {
+    console.log('photos', photosArray);
+  }
 
   return (
     <ScrollView style={styles.container}>

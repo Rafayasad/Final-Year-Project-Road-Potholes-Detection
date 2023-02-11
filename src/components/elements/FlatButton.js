@@ -1,6 +1,6 @@
 import React from 'react';
-import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
-import {StyleSheet, Text, View, TouchableOpacity} from 'react-native';
+import { launchCamera, launchImageLibrary } from 'react-native-image-picker';
+import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 
 const styles = props =>
   StyleSheet.create({
@@ -29,7 +29,7 @@ const FlatButton = ({
   return (
     <TouchableOpacity onPress={getItemFromGalleryFun}>
       <View style={styles(bgColor).main}>
-        <Text style={{color: textColor, fontSize: 16}}>{text}</Text>
+        <Text style={{ color: textColor, fontSize: 16 }}>{text}</Text>
       </View>
     </TouchableOpacity>
   );

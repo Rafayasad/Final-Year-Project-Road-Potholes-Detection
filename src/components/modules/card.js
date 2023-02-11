@@ -1,15 +1,15 @@
 import * as React from 'react';
-import {Avatar, Button, Card, View} from 'react-native-paper';
+import { Avatar, Button, Card, View } from 'react-native-paper';
 import FlatButton from '../elements/FlatButton';
 import Text from '../elements/Text';
-import {Color} from '../theme/colors';
+import { Color } from '../theme/colors';
 import VideoPlayer from './videoPlayer';
-import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
+import { launchCamera, launchImageLibrary } from 'react-native-image-picker';
 
-const DetectionCard = ({cardTitle, cardContent, source, sourceType , callBack}) => {
-//   React.useEffect(() => {
-//     launchImageLibrary();
-//   }, []);
+const DetectionCard = ({ cardTitle, cardContent, source, sourceType, callBack }) => {
+  //   React.useEffect(() => {
+  //     launchImageLibrary();
+  //   }, []);
   return (
     <Card
       style={{
@@ -23,7 +23,7 @@ const DetectionCard = ({cardTitle, cardContent, source, sourceType , callBack}) 
         </>
       ) : (
         // <Card.Cover style={{}} source={{ uri: source }} />
-        <Card.Cover style={{}} source={{uri: source}} />
+        <Card.Cover style={{}} source={{ uri: source }} />
       )}
       <Text
         title={cardTitle}
