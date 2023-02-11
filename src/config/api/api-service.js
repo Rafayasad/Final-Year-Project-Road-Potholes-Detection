@@ -3,7 +3,7 @@ import * as requestFromServer from "./api-axios";
 import PothImage from '../../../assets/images/imagePotholes.jpg';
 
 export const fetchImageApi = async (image) => {
-    console.log("hello==>",PothImage);
+    // console.log("hello==>",PothImage);
     const bodyFormData = new FormData()
     bodyFormData.append('image', PothImage);
     bodyFormData.append('status', 'potholes');

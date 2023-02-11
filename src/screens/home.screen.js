@@ -1,54 +1,77 @@
-import React, { useEffect } from "react";
-import { View, StyleSheet, ScrollView } from "react-native";
-import { Color } from "../components/theme/colors";
-import { Height, Width } from "../components/theme/dimensions";
-import { fetchImageApi } from "../config/api/api-service";
-import FlatButton from "../components/elements/FlatButton";
-import Text from "../components/elements/Text";
-import DetectionCard from "../components/modules/card";
-import imagesOfPothole from "../../assets/images/imagePotholes.jpg";
+import React, {useEffect, useState} from 'react';
+import {View, StyleSheet, ScrollView, Button} from 'react-native';
+import FlatButton from '../components/elements/FlatButton';
+import {Color} from '../components/theme/colors';
+import {Height, Width} from '../components/theme/dimensions';
+import Text from '../components/elements/Text';
+import DetectionCard from '../components/modules/card';
+import ImagePicker from 'react-native-image-crop-picker';
 
 const styles = StyleSheet.create({
     container: {
         backgroundColor: Color.secondaryColor,
-        height: Height
+        height: Height,
     },
     subContainer: {
         height: Height,
-        marginBottom: Height * .06,
-        marginLeft: Width * .03,
-        marginRight: Width * .03
-    }
-})
+        marginBottom: Height * 0.06,
+        marginLeft: Width * 0.03,
+        marginRight: Width * 0.03,
+    },
+});
 
 export default function Home() {
-    // const IMAGE_DETECTION = () => {
-    //     fetchImageApi(imagesOfPothole)
-    // }
-    // useEffect(() => {
-    //     IMAGE_DETECTION()
-    // }, [])
+    
+    const [photosArray, setPhotosArray] = useState([]);
+    const [video, setVideo] = useState();
+
+    const callBack = type => {
+        type === 'Detection via video'
+            ? ImagePicker.openPicker({
+                mediaType: 'video',
+            }).then(video => {
+                console.warn(video);
+            })
+            : ImagePicker.openPicker({
+                multiple: true,
+            }).then(images => {
+                console.log(images);
+                setPhotosArray(images);
+            });
+    };
+
     return (
         <ScrollView style={styles.container}>
             <View style={styles.subContainer}>
                 <View>
-                    <Text title={"Welcome,"} size={"xl"} weight={"lite"} color={Color.darkColor} />
+                    <Text
+                        title={'Welcome,'}
+                        size={'xl'}
+                        weight={'lite'}
+                        color={Color.darkColor}
+                    />
                 </View>
                 <View style={{ marginBottom: 10 }}>
-                    <Text title={"Hamad melay"} size={"lg"} weight={"lite"} color={Color.darkColor} />
+                    <Text
+                        title={'Hamad melay'}
+                        size={'lg'}
+                        weight={'lite'}
+                        color={Color.darkColor}
+                    />
                 </View>
                 <DetectionCard
                     source={'https://miro.medium.com/max/1200/0*MAFFN_XvQDlTyVUZ.jpg'}
-                    cardTitle={"Detection via photos"}
-                    cardContent={"card content"}
+                    cardTitle={'Detection via photos'}
+                    cardContent={'card content'}
+                    callBack={callBack}
                 />
                 <DetectionCard
-                    cardTitle={"Detection via video"}
-                    cardContent={"card content"}
-                    sourceType={"video"}
+                    cardTitle={'Detection via video'}
+                    cardContent={'card content'}
+                    sourceType={'video'}
+                    callBack={callBack}
                 />
             </View>
-            {/* <FlatButton text={"Hello"} bgColor={Color.primaryColor} textColor={Color.darkColor} /> */}
         </ScrollView>
-    )
+    );
 }
