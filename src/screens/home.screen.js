@@ -28,14 +28,17 @@ export default function Home() {
       ? ImagePicker.openPicker({
           mediaType: 'video',
         }).then(video => {
-          console.warn(video);
+          console.log(video);
         })
       : ImagePicker.openPicker({
           multiple: true,
         }).then(images => {
-          console.warn(images);
+          console.log(images);
+          setPhotosArray(images);
         });
   };
+
+  {console.log("photos",photosArray)}
 
   return (
     <ScrollView style={styles.container}>
