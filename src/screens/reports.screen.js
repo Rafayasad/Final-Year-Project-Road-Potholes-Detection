@@ -28,7 +28,7 @@ function Report() {
     data: [0.4],
   };
   const data2 = {
-    labels: ['0', '20', '40', '60', '80', '100'],
+    labels: ['0', '2', '4', '6', '8', '10'],
     datasets: [
       {
         data: [0, 80],
@@ -97,7 +97,7 @@ function Report() {
                 <Text
                   size="sm"
                   weight="lite"
-                  title="80% Life Span"
+                  title="20% Life Span"
                   color={'#013237'}
                 />
               </Card>
@@ -120,8 +120,8 @@ function Report() {
                 <Marker
                   // key={index}
                   coordinate={{latitude: 37.78825, longitude: -122.4324}}
-                  title={'asd'}
-                  description={'asnl'}
+                  title={'North Karachi'}
+                  description={'Potholes: 80%'}
                 />
               </MapView>
             </View>
@@ -220,7 +220,7 @@ const styles = StyleSheet.create({
   },
   download_view: {
     width: windowWidth,
-    paddingHorizontal:10
+    paddingHorizontal: 10,
   },
   footer: {
     width: windowWidth,
