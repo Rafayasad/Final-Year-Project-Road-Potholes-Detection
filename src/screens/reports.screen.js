@@ -220,7 +220,7 @@ const styles = StyleSheet.create({
   },
   download_view: {
     width: windowWidth,
-    paddingHorizontal: 10,
+    paddingHorizontal:10
   },
   footer: {
     width: windowWidth,
