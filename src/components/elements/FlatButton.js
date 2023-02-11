@@ -14,13 +14,13 @@ const styles = (props) => StyleSheet.create({
         height: 50,
         width: '100%',
         backgroundColor: props,
-        marginTop:5
+        marginTop: 5
     }
 })
 
-const FlatButton = ({ text, bgColor, textColor, margintop }) => {
+const FlatButton = ({ text, bgColor, textColor, margintop, onClick }) => {
     return (
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => onClick()}>
             <View style={styles(bgColor).main}>
                 <Text style={{ color: textColor, fontSize: 16 }}>{text}</Text>
             </View>

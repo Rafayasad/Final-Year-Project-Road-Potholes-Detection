@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { View, StyleSheet, ScrollView } from "react-native";
-import FlatButton from "../components/elements/FlatButton";
 import { Color } from "../components/theme/colors";
 import { Height, Width } from "../components/theme/dimensions";
+import { fetchImageApi } from "../config/api/api-service";
+import FlatButton from "../components/elements/FlatButton";
 import Text from "../components/elements/Text";
 import DetectionCard from "../components/modules/card";
+import imagesOfPothole from "../../assets/images/imagePotholes.jpg";
 
 const styles = StyleSheet.create({
     container: {
@@ -20,6 +22,12 @@ const styles = StyleSheet.create({
 })
 
 export default function Home() {
+    // const IMAGE_DETECTION = () => {
+    //     fetchImageApi(imagesOfPothole)
+    // }
+    // useEffect(() => {
+    //     IMAGE_DETECTION()
+    // }, [])
     return (
         <ScrollView style={styles.container}>
             <View style={styles.subContainer}>
