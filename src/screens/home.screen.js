@@ -1,7 +1,7 @@
-import React, {useEffect, useState} from 'react';
-import {View, StyleSheet, ScrollView, Button} from 'react-native';
-import {Color} from '../components/theme/colors';
-import {Height, Width} from '../components/theme/dimensions';
+import React, { useEffect, useState } from 'react';
+import { View, StyleSheet, ScrollView, Button } from 'react-native';
+import { Color } from '../components/theme/colors';
+import { Height, Width } from '../components/theme/dimensions';
 import Text from '../components/elements/Text';
 import DetectionCard from '../components/modules/card';
 import Modal from '../components/modules/modal';
@@ -19,15 +19,15 @@ const styles = StyleSheet.create({
   },
 });
 
-export default function Home() {
+export default function Home(props) {
+  const { navigation } = props;
   const [photosArray, setPhotosArray] = useState([]);
   const [video, setVideo] = useState();
   const [type, setType] = useState();
   const [showModal, setShowModal] = useState(false);
+  
   const callBack = type => {
-    setShowModal(true);
-
-    type === 'Detection via video' ? setType('videos') : setType('photos');
+    navigation.navigate("UploadScreen");
   };
 
   return (
@@ -41,7 +41,7 @@ export default function Home() {
             color={Color.darkColor}
           />
         </View>
-        <View style={{marginBottom: 10}}>
+        <View style={{ marginBottom: 10 }}>
           <Text
             title={'Hamad melay'}
             size={'lg'}
@@ -62,8 +62,6 @@ export default function Home() {
           callBack={callBack}
         />
       </View>
-
-      <Modal type={type} showModal={showModal} setShowModal={setShowModal} />
     </ScrollView>
   );
 }

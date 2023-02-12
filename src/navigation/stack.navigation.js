@@ -1,20 +1,11 @@
 // In App.js in a new project
 
-import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import * as React from 'react';
-import { useSelector } from 'react-redux';
-import { getLoginData } from '../redux/loginSlice';
-import CategoryScreen from '../screens/category.screen';
-import ForgetMpinScreen from '../screens/forgetMpin.screen';
-import GetOtpScreen from '../screens/getOtp.screen';
-import LanguageScreen from '../screens/language.screen';
-import LocationScreen from '../screens/location.screen';
-import LoginScreen from '../screens/login.screens';
-import MyProfile from '../screens/myProfile.screen';
-import RegisterScreen from '../screens/register.screen';
-import SubmitOtpScreen from '../screens/submitOtp.screen';
-import SubscriptionScreen from '../screens/subscription.screen';
+import { Header } from '../components/modules/header';
+import Report from '../screens/reports.screen';
+import UploadScreen from '../screens/upload.screen';
+import Tabs from './bottom_tab.navigation';
 
 const Stack = createNativeStackNavigator();
 
@@ -37,11 +28,13 @@ function AppStack() {
         <Stack.Navigator>
             <Stack.Group
                 screenOptions={{
-                    headerShown: false,
+                    // headerShown: false,
                     contentStyle: { backgroundColor: "#EBEBF6" }
                 }}
             >
-                <Stack.Screen name="Home" component={home} />
+                <Stack.Screen options={{ headerShown: false }} name="Homes" component={Tabs} />
+                <Stack.Screen options={{ header: () => <Header title={"DETECT POTHOLES"} /> }} name="UploadScreen" component={UploadScreen} />
+                <Stack.Screen options={{ header: () => <Header title={"DETECTION REPORT"} /> }} name="ReportScreen" component={Report} />
             </Stack.Group>
         </Stack.Navigator>
     )

@@ -6,8 +6,8 @@ import Tabs from './src/navigation/bottom_tab.navigation';
 function App() {
   return (
     <>
-    <Tabs />
-        {/* <MainNavigation />     */}
+    {/* <Tabs /> */}
+        <MainNavigation />    
     </>
   )
 }
