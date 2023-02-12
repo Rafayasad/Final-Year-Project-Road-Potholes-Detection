@@ -1,12 +1,10 @@
 import React, {useEffect, useState} from 'react';
 import {View, StyleSheet, ScrollView, Button} from 'react-native';
-import FlatButton from '../components/elements/FlatButton';
 import {Color} from '../components/theme/colors';
 import {Height, Width} from '../components/theme/dimensions';
 import Text from '../components/elements/Text';
 import DetectionCard from '../components/modules/card';
-import ImagePicker from 'react-native-image-crop-picker';
-import {fetchImageApi} from '../config/api/api-service';
+import Modal from '../components/modules/modal';
 
 const styles = StyleSheet.create({
   container: {
@@ -24,39 +22,13 @@ const styles = StyleSheet.create({
 export default function Home() {
   const [photosArray, setPhotosArray] = useState([]);
   const [video, setVideo] = useState();
+  const [type, setType] = useState();
+  const [showModal, setShowModal] = useState(false);
   const callBack = type => {
-    type === 'Detection via video'
-      ? ImagePicker.openPicker({
-          mediaType: 'video',
-        }).then(video => {
-          console.log(video);
-        })
-      : ImagePicker.openPicker({
-          multiple: true,
-        }).then(images => {
-          // console.log(images);
-          setPhotosArray(images);
-          const bodyFormData = new FormData();
-          bodyFormData.append('image', {
-            uri: images[0].path,
-            name: images[0].path.split('/').pop(),
-            type: images[0].mime,
-          });
-          bodyFormData.append('status', 'pothole');
-          fetchImageApi(bodyFormData)
-            .then(response => response.json())
-            .then(ress => {
-              console.log('agaya', ress);
-            })
-            .catch(error => {
-              console.log('nahi aya', error);
-            });
-        });
-  };
+    setShowModal(true);
 
-  {
-    console.log('photos', photosArray);
-  }
+    type === 'Detection via video' ? setType('videos') : setType('photos');
+  };
 
   return (
     <ScrollView style={styles.container}>
@@ -90,6 +62,8 @@ export default function Home() {
           callBack={callBack}
         />
       </View>
+
+      <Modal type={type} showModal={showModal} setShowModal={setShowModal} />
     </ScrollView>
   );
 }

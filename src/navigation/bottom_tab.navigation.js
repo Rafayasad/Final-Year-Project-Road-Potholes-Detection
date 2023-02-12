@@ -2,7 +2,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
 import Home from '../screens/home.screen';
-import Report from '../screens/reports.screen';
+// import Report from '../screens/reports.screen';
 import Map from '../screens/mapView.screen';
 import Recents from '../screens/recents.screen';
 
@@ -77,7 +77,7 @@ const Tabs = () => {
                         }
                     }}
                 />
-                <Tab.Screen name='Reports'
+                {/* <Tab.Screen name='Reports'
                     component={Report}
                     options={{
                         tabBarIcon: ({ focused, color, size }) => {
@@ -89,7 +89,7 @@ const Tabs = () => {
                             )
                         }
                     }}
-                />
+                /> */}
             </Tab.Navigator>
         </NavigationContainer>
     )
