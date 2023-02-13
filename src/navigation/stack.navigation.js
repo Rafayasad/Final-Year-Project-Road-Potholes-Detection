@@ -3,7 +3,7 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import * as React from 'react';
 import { Header } from '../components/modules/header';
-import Report from '../screens/reports.screen';
+import Report from '../screens/reports.Screen';
 import UploadScreen from '../screens/upload.screen';
 import Tabs from './bottom_tab.navigation';
 
