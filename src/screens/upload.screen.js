@@ -6,6 +6,7 @@ import { Color } from "../components/theme/colors";
 import { Height, Width } from '../components/theme/dimensions';
 import ImagePicker from 'react-native-image-crop-picker';
 import Lottie from 'lottie-react-native';
+import { fetchImageApi, fetchImageApis } from "../config/api/api-service";
 
 const styles = StyleSheet.create({
     container: {
@@ -34,10 +35,24 @@ export default function UploadScreen(props) {
         });
     }
 
-    const callBackSubmit = () => {
-        navigation.navigate("ReportScreen",{
-            photos:photosArray
-        });
+    const callBackSubmit = async () => {
+
+        const formData = new FormData()
+        formData.append("status", "potholes")
+        for (var i = 0; i < photosArray.length; i++) {
+            formData.append("image", {
+                uri: photosArray[i].path,
+                name: "hello.jpeg",
+                // filename: 'image',
+                type: photosArray[i].mime,
+            })
+        }
+        await fetchImageApis(formData)
+            .then(response => response.json())
+            .then(data => {
+                console.log('RESPONSE', data)
+            });
+
     }
 
     return (

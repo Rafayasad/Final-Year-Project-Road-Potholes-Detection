@@ -1,3 +1,4 @@
+import axios from "axios";
 import { BASE_URL } from "../axios";
 
 export const IMAGE_DETECTION = 'image/';
@@ -5,7 +6,14 @@ export const VIDEO_DETECTION = 'image/video/';
 export const LIVE_STATUS = 'image/status/';
 
 export function getImageApi(image) {
-    return BASE_URL.post(IMAGE_DETECTION);
+    return axios.post("http://192.168.0.138:8000/image/", image
+        , {
+            headers: {
+                'Content-Type': 'multipart/form-data',
+                Accept: 'application/json',
+            }
+        }
+    );
 }
 
 export function getVideoApi(video) {

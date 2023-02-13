@@ -13,7 +13,8 @@ function App() {
   return (
     <>
       {/* {splashOff ? <Tabs/> : <SplashScreen />} */}
-      <WelcomeScreen />
+      {/* <WelcomeScreen /> */}
+      <MainNavigation />
     </>
   );
 }
