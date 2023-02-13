@@ -74,7 +74,7 @@ const Modale = memo(props => {
       //   onDismiss={() => setShowModal(false)}
       contentContainerStyle={containerStyle}>
       {/* <View style={styles.map_view}> */}
-        {/* <MapView
+      {/* <MapView
           style={styles.map}
           initialRegion={{
             latitude: 37.78825,
@@ -83,22 +83,21 @@ const Modale = memo(props => {
             longitudeDelta: 0.0421,
           }}
         /> */}
-        <MapView
-          style={styles.map}
-          region={{
-            latitude: 37.78825,
-            longitude: -122.4324,
-            latitudeDelta: 0.015,
-            longitudeDelta: 0.0121,
-          }}
-          >
-          <Marker
-            // key={index}
-            coordinate={{latitude: 37.78825, longitude: -122.4324}}
-            title={'North Karachi'}
-            description={'Potholes: 80%'}
-          />
-        </MapView>
+      <MapView
+        style={styles.map}
+        region={{
+          latitude: 37.78825,
+          longitude: -122.4324,
+          latitudeDelta: 0.015,
+          longitudeDelta: 0.0121,
+        }}>
+        <Marker
+          // key={index}
+          coordinate={{latitude: 37.78825, longitude: -122.4324}}
+          title={'North Karachi'}
+          description={'Potholes: 80%'}
+        />
+      </MapView>
       {/* </View> */}
       <View style={{margin: 20, alignItems: 'center'}}>
         {video || photosArray.length > 0 ? (
