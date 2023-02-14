@@ -11,3 +11,14 @@ export const fetchImageApis = async (data) => {
         body: data
     });
 }
+
+export const fetchVideoApis = async (data) => {
+    return fetch(`http://192.168.0.138:8000/image/video/`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'multipart/form-data',
+            Accept: 'application/json',
+        },
+        body: data
+    });
+}

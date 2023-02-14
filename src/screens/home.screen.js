@@ -27,11 +27,13 @@ export default function Home(props) {
   const [showModal, setShowModal] = useState(false);
   
   const callBack = type => {
-    navigation.navigate("UploadScreen");
+    navigation.navigate("UploadScreen",{
+      type: type
+    });
   };
 
   return (
-    <ScrollView style={styles.container}>
+    <View style={styles.container}>
       <View style={styles.subContainer}>
         {/* <View>
           <Text
@@ -52,16 +54,19 @@ export default function Home(props) {
         <DetectionCard
           source={'https://miro.medium.com/max/1200/0*MAFFN_XvQDlTyVUZ.jpg'}
           cardTitle={'Detection via photos'}
-          cardContent={'card content'}
+          cardContent={'Detect your images'}
           callBack={callBack}
+          type={"photo"}
         />
         <DetectionCard
+          lottie
           cardTitle={'Detection via video'}
-          cardContent={'card content'}
+          cardContent={'Detect your videos'}
           sourceType={'video'}
           callBack={callBack}
+          type={"video"}
         />
       </View>
-    </ScrollView>
+    </View>
   );
 }

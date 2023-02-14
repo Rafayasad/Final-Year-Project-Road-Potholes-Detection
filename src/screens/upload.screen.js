@@ -6,7 +6,7 @@ import { Color } from "../components/theme/colors";
 import { Height, Width } from '../components/theme/dimensions';
 import ImagePicker from 'react-native-image-crop-picker';
 import Lottie from 'lottie-react-native';
-import { fetchImageApi, fetchImageApis } from "../config/api/api-service";
+import { fetchImageApi, fetchImageApis, fetchVideoApis } from "../config/api/api-service";
 
 const styles = StyleSheet.create({
     container: {
@@ -22,7 +22,9 @@ const styles = StyleSheet.create({
 });
 
 export default function UploadScreen(props) {
-    const { navigation } = props;
+    const { navigation, route } = props;
+    const { type } = route.params;
+    console.log(type);
     const [photosArray, setPhotosArray] = useState([]);
     const [video, setVideo] = useState();
 
@@ -35,8 +37,16 @@ export default function UploadScreen(props) {
         });
     }
 
-    const callBackSubmit = async () => {
+    const callBackUploadVideo = () => {
+        ImagePicker.openPicker({
+            mediaType: "video",
+        }).then((video) => {
+            console.log(video);
+            setVideo(video);
+        });
+    }
 
+    const callBackSubmitPhoto = async () => {
         const formData = new FormData()
         formData.append("status", "potholes")
         for (var i = 0; i < photosArray.length; i++) {
@@ -50,9 +60,26 @@ export default function UploadScreen(props) {
         await fetchImageApis(formData)
             .then(response => response.json())
             .then(data => {
+                navigation.navigate("Homes");
                 console.log('RESPONSE', data)
-            });
+            })
+    }
 
+    const callBackSubmitVideo = async () => {
+        const formData = new FormData()
+        formData.append("lable_status", "videos")
+        formData.append("filefiled", {
+            uri: video.path,
+            name: "hello.jpeg",
+            // filename: 'image',
+            type: video.mime,
+        })
+        await fetchVideoApis(formData)
+            .then(response => response.json())
+            .then(data => {
+                navigation.navigate("Homes");
+                console.log('RESPONSE VIDEO', data);
+            })
     }
 
     return (
@@ -68,27 +95,47 @@ export default function UploadScreen(props) {
                 <View style={{ height: Height * .4, justifyContent: "space-between" }}>
                     <View>
                         <Text
-                            title={photosArray.length > 0 ? `Great..! Now Submit your selected photos for detection stage...` : `Disclaimer: You can be select single photo or mulitple for detecting better result, lets go upload pothole photos...`}
+                            title={photosArray.length > 0 ? `Great..! Now Submit your selected photos for detection stage...` :
+                                type == "Detection via photos" ?
+                                    `Disclaimer: You can be select single photo or mulitple for detecting better result, lets go upload pothole photos...`
+                                    : `Disclaimer: You can be select single video for detecting better result, lets go upload pothole video...`
+                            }
                             size={'lg'}
                             weight={'heavy'}
                             color={Color.darkColor}
                         />
                     </View>
                     <View>
-                        {photosArray.length > 0 ?
-                            <FlatButton
-                                text={'SUBMIT'}
-                                bgColor={Color.dangerColor}
-                                textColor={Color.darkColor}
-                                callBack={callBackSubmit}
-                            />
+                        {photosArray.length > 0 || video ?
+                            type == "Detection via photos" ?
+                                <FlatButton
+                                    text={'SUBMIT'}
+                                    bgColor={Color.dangerColor}
+                                    textColor={Color.darkColor}
+                                    callBack={callBackSubmitPhoto}
+                                />
+                                :
+                                <FlatButton
+                                    text={'SUBMIT'}
+                                    bgColor={Color.dangerColor}
+                                    textColor={Color.darkColor}
+                                    callBack={callBackSubmitVideo}
+                                />
                             :
-                            <FlatButton
-                                text={'UPLOAD PHOTOS'}
-                                bgColor={Color.dangerColor}
-                                textColor={Color.darkColor}
-                                callBack={callBackUploads}
-                            />
+                            type == "Detection via photos" ?
+                                <FlatButton
+                                    text={'UPLOAD PHOTOS'}
+                                    bgColor={Color.dangerColor}
+                                    textColor={Color.darkColor}
+                                    callBack={callBackUploads}
+                                />
+                                :
+                                <FlatButton
+                                    text={'UPLOAD VIDEO'}
+                                    bgColor={Color.dangerColor}
+                                    textColor={Color.darkColor}
+                                    callBack={callBackUploadVideo}
+                                />
                         }
                     </View>
                 </View>

@@ -1,12 +1,15 @@
 import * as React from 'react';
-import { Avatar, Button, Card, View } from 'react-native-paper';
+import { View } from 'react-native';
+import { Avatar, Button, Card } from 'react-native-paper';
 import FlatButton from '../elements/FlatButton';
 import Text from '../elements/Text';
 import { Color } from '../theme/colors';
 import VideoPlayer from './videoPlayer';
 import { launchCamera, launchImageLibrary } from 'react-native-image-picker';
+import Lottie from 'lottie-react-native';
+import { Height, Width } from '../../components/theme/dimensions';
 
-const DetectionCard = ({ cardTitle, cardContent, source, sourceType, callBack }) => {
+const DetectionCard = ({ cardTitle, cardContent, source, sourceType, callBack, type, lottie }) => {
   //   React.useEffect(() => {
   //     launchImageLibrary();
   //   }, []);
@@ -18,12 +21,14 @@ const DetectionCard = ({ cardTitle, cardContent, source, sourceType, callBack })
         backgroundColor: Color.primaryColor,
       }}>
       {sourceType == 'video' ? (
-        <>
-          <VideoPlayer />
-        </>
+        <View style={{ height: Height * .25, justifyContent: "center", alignItems: "center" }}>
+          <Lottie source={require('../../../assets/videos/road.json')} autoPlay loop resizeMode="cover" style={{ height: 300 }} />
+        </View>
       ) : (
+        <View style={{ height: Height * .25, justifyContent: "center", alignItems: "center" }}>
+          <Lottie source={require('../../../assets/videos/photo.json')} autoPlay loop resizeMode="cover" style={{ height: 300 }} />
+        </View>
         // <Card.Cover style={{}} source={{ uri: source }} />
-        <Card.Cover style={{}} source={{ uri: source }} />
       )}
       <Text
         title={cardTitle}
