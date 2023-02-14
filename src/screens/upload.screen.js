@@ -34,17 +34,25 @@ export default function UploadScreen(props) {
         }).then(images => {
             console.log(images);
             setPhotosArray(images);
+            navigation.navigate("SelectedScreen");
+        }).catch((err) => {
+            console.log("Error==>", err);
         });
     };
 
     const callBackCameraUpload = () => {
+        console.log("s");
         ImagePicker.openCamera({
             width: 300,
             height: 400,
             cropping: true,
         }).then(image => {
             console.log(image);
-        });
+            setPhotosArray(image);
+            navigation.navigate("SelectedScreen");
+        }).catch((err) => {
+            console.log("Error==>", err);
+        })
     }
 
     const callBackUploadVideo = () => {
@@ -53,6 +61,8 @@ export default function UploadScreen(props) {
         }).then((video) => {
             console.log(video);
             setVideo(video);
+        }).catch((err) => {
+            console.log("Error==>", err);
         });
     }
 
@@ -61,6 +71,8 @@ export default function UploadScreen(props) {
             mediaType: 'video',
         }).then(image => {
             console.log(image);
+        }).catch((err) => {
+            console.log("Error==>", err);
         });
     }
 
@@ -143,19 +155,35 @@ export default function UploadScreen(props) {
                                     />
                                 :
                                 type == "Detection via photos" ?
-                                    <FlatButton
-                                        text={'UPLOAD PHOTOS'}
-                                        bgColor={Color.dangerColor}
-                                        textColor={Color.darkColor}
-                                        callBack={callBackUploads}
-                                    />
+                                    <View>
+                                        <FlatButton
+                                            text={'UPLOAD PHOTOS'}
+                                            bgColor={Color.dangerColor}
+                                            textColor={Color.darkColor}
+                                            callBack={callBackUploads}
+                                        />
+                                        <FlatButton
+                                            text={'CAPTURE PHOTO'}
+                                            bgColor={Color.dangerColor}
+                                            textColor={Color.darkColor}
+                                            callBack={callBackCameraUpload}
+                                        />
+                                    </View>
                                     :
-                                    <FlatButton
-                                        text={'UPLOAD VIDEO'}
-                                        bgColor={Color.dangerColor}
-                                        textColor={Color.darkColor}
-                                        callBack={callBackUploadVideo}
-                                    />
+                                    <View>
+                                        <FlatButton
+                                            text={'UPLOAD VIDEO'}
+                                            bgColor={Color.dangerColor}
+                                            textColor={Color.darkColor}
+                                            callBack={callBackUploadVideo}
+                                        />
+                                        <FlatButton
+                                            text={'CAPTURE VIDEO'}
+                                            bgColor={Color.dangerColor}
+                                            textColor={Color.darkColor}
+                                            callBack={callBackUploadVideoCamera}
+                                        />
+                                    </View>
                             }
                         </View>
                     </View>

@@ -4,6 +4,7 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import * as React from 'react';
 import { Header } from '../components/modules/header';
 import Report from '../screens/reports.screen';
+import SelectScreen from '../screens/selectLocation';
 import UploadScreen from '../screens/upload.screen';
 import WelcomeScreen from '../screens/WelcomeScreen';
 import Tabs from './bottom_tab.navigation';
@@ -38,6 +39,7 @@ function AppStack() {
                 <Stack.Screen options={{ headerShown: false }} name="Homes" component={Tabs} />
                 <Stack.Screen options={{ header: () => <Header title={"DETECT POTHOLES"} /> }} name="UploadScreen" component={UploadScreen} />
                 <Stack.Screen options={{ header: () => <Header title={"DETECTION REPORT"} /> }} name="ReportScreen" component={Report} />
+                <Stack.Screen options={{ header: () => <Header title={"SelectedScreen"} /> }} name="SelectedScreen" component={SelectScreen} />
             </Stack.Group>
         </Stack.Navigator>
     )

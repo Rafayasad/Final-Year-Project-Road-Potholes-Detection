@@ -36,13 +36,15 @@ const WelcomeScreen = (props) => {
         <View style={{ height: Height * .5, justifyContent: "center", alignItems: "center" }}>
           <Lottie source={require('../../assets/videos/welcome.json')} autoPlay loop resizeMode="cover" style={{ height: 300 }} />
         </View>
-        <FlatButton
-          text={'Get Started'}
-          bgColor={Color.dangerColor}
-          textColor={Color.lightColor}
-          cardTitle="Get Started"
-          callBack={callBack}
-        />
+        <View style={{}}>
+          <FlatButton
+            text={'Get Started'}
+            bgColor={Color.dangerColor}
+            textColor={Color.lightColor}
+            cardTitle="Get Started"
+            callBack={callBack}
+          />
+        </View>
       </View>
     </View>
   );
