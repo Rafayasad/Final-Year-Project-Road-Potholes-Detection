@@ -28,7 +28,9 @@ const FlatButton = ({
   };
   return (
     <TouchableOpacity onPress={getItemFromGalleryFun}>
-      <View style={styles(bgColor).main}>
+      <View 
+      style={styles(bgColor).main}
+      >
         <Text style={{ color: textColor, fontSize: 16 }}>{text}</Text>
       </View>
     </TouchableOpacity>
