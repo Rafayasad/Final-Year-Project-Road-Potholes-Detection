@@ -1,8 +1,8 @@
 // In App.js in a new project
 
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import * as React from 'react';
-import { Header } from '../components/modules/header';
+import {Header} from '../components/modules/header';
 import Report from '../screens/reports.screen';
 import UploadScreen from '../screens/upload.screen';
 import WelcomeScreen from '../screens/WelcomeScreen';
@@ -43,9 +43,4 @@ function AppStack() {
     )
 }
 
-
-
-export {
-    AppStack,
-    AuthStack
-};
+export {AppStack, AuthStack};

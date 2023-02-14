@@ -37,9 +37,9 @@ const WelcomeScreen = (props) => {
           <Lottie source={require('../../assets/videos/welcome.json')} autoPlay loop resizeMode="cover" style={{ height: 300 }} />
         </View>
         <FlatButton
-          text={'GET STARTED'}
+          text={'Get Started'}
           bgColor={Color.dangerColor}
-          textColor={Color.darkColor}
+          textColor={Color.lightColor}
           cardTitle="Get Started"
           callBack={callBack}
         />

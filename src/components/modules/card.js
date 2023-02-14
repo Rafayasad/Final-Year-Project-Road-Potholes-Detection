@@ -3,13 +3,19 @@ import { View } from 'react-native';
 import { Avatar, Button, Card } from 'react-native-paper';
 import FlatButton from '../elements/FlatButton';
 import Text from '../elements/Text';
-import { Color } from '../theme/colors';
-import VideoPlayer from './videoPlayer';
-import { launchCamera, launchImageLibrary } from 'react-native-image-picker';
+import {Color} from '../theme/colors';
+import {Height, Width} from '../../components/theme/dimensions';
 import Lottie from 'lottie-react-native';
-import { Height, Width } from '../../components/theme/dimensions';
+import VideoPlayer from './videoPlayer';
+import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
 
-const DetectionCard = ({ cardTitle, cardContent, source, sourceType, callBack, type, lottie }) => {
+const DetectionCard = ({
+  cardTitle,
+  cardContent,
+  source,
+  sourceType,
+  callBack,
+}) => {
   //   React.useEffect(() => {
   //     launchImageLibrary();
   //   }, []);
@@ -43,9 +49,9 @@ const DetectionCard = ({ cardTitle, cardContent, source, sourceType, callBack, t
         color={Color.darkColor}
       />
       <FlatButton
-        text={'DETECT'}
-        bgColor={Color.dangerColor}
-        textColor={Color.darkColor}
+        text={'Detect'}
+        bgColor={Color.btnBg}
+        textColor={Color.lightColor}
         cardTitle={cardTitle}
         callBack={callBack}
       />

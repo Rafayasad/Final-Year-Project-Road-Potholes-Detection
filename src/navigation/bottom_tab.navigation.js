@@ -1,6 +1,6 @@
-import { NavigationContainer } from '@react-navigation/native';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
+import {NavigationContainer} from '@react-navigation/native';
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import {StyleSheet, Text, View, Image, TouchableOpacity} from 'react-native';
 import Home from '../screens/home.screen';
 // import Report from '../screens/reports.screen';
 import Map from '../screens/mapView.screen';
@@ -94,16 +94,16 @@ const Tabs = () => {
 }
 
 const styles = StyleSheet.create({
-    shadow: {
-        shadowColor: "#7f5df0",
-        shadowOffset: {
-            width: 0,
-            height: 10
-        },
-        shadowOpacity: .25,
-        shadowRadius: 3.5,
-        elevation: 5
-    }
-})
+  shadow: {
+    shadowColor: '#7f5df0',
+    shadowOffset: {
+      width: 0,
+      height: 10,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.5,
+    elevation: 5,
+  },
+});
 
 export default Tabs;
