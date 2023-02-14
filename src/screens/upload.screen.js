@@ -37,12 +37,30 @@ export default function UploadScreen(props) {
         });
     };
 
+    const callBackCameraUpload = () => {
+        ImagePicker.openCamera({
+            width: 300,
+            height: 400,
+            cropping: true,
+        }).then(image => {
+            console.log(image);
+        });
+    }
+
     const callBackUploadVideo = () => {
         ImagePicker.openPicker({
             mediaType: "video",
         }).then((video) => {
             console.log(video);
             setVideo(video);
+        });
+    }
+
+    const callBackUploadVideoCamera = () => {
+        ImagePicker.openCamera({
+            mediaType: 'video',
+        }).then(image => {
+            console.log(image);
         });
     }
 

@@ -1,6 +1,6 @@
-import {NavigationContainer} from '@react-navigation/native';
-import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import {StyleSheet, Text, View, Image, TouchableOpacity} from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
 import Home from '../screens/home.screen';
 // import Report from '../screens/reports.screen';
 import Map from '../screens/mapView.screen';
@@ -42,8 +42,8 @@ const Tabs = () => {
                     tabBarIcon: ({ focused, color, size }) => {
                         return (
                             <>
-                                <IconHome name={focused ? "home" : "home-outline"} color={focused ? Color.primaryColor : Color.dangerColor} size={25} />
-                                <Text style={{ fontSize: 12, color: focused ? Color.primaryColor : Color.dangerColor }}>Home</Text>
+                                <IconHome name={focused ? "home" : "home-outline"} color={focused ? Color.dangerColor : Color.primaryColor} size={25} />
+                                <Text style={{ fontSize: 12, color: focused ? Color.dangerColor : Color.primaryColor }}>Home</Text>
                             </>
                         )
                     }
@@ -56,8 +56,8 @@ const Tabs = () => {
                     tabBarIcon: ({ focused, color, size }) => {
                         return (
                             <>
-                                <IconHome name={focused ? "map-marker" : "map-marker-outline"} color={focused ? Color.primaryColor : Color.dangerColor} size={25} />
-                                <Text style={{ fontSize: 12, color: focused ? Color.primaryColor : Color.dangerColor }}>MapView</Text>
+                                <IconHome name={focused ? "map-marker" : "map-marker-outline"} color={focused ? Color.dangerColor : Color.primaryColor} size={25} />
+                                <Text style={{ fontSize: 12, color: focused ? Color.dangerColor : Color.primaryColor }}>MapView</Text>
                             </>
                         )
                     }
@@ -66,11 +66,12 @@ const Tabs = () => {
             <Tab.Screen name='Recents'
                 component={Recents}
                 options={{
+                    header: () => <Header title={"RECENTS"} />,
                     tabBarIcon: ({ focused, color, size }) => {
                         return (
                             <>
-                                <Ionicons name={focused ? "receipt" : "receipt-outline"} color={focused ? Color.primaryColor : Color.dangerColor} size={25} />
-                                <Text style={{ fontSize: 12, color: focused ? Color.primaryColor : Color.dangerColor }}>Recents</Text>
+                                <Ionicons name={focused ? "receipt" : "receipt-outline"} color={focused ? Color.dangerColor : Color.primaryColor} size={25} />
+                                <Text style={{ fontSize: 12, color: focused ? Color.dangerColor : Color.primaryColor }}>Recents</Text>
                             </>
                         )
                     }
@@ -94,16 +95,16 @@ const Tabs = () => {
 }
 
 const styles = StyleSheet.create({
-  shadow: {
-    shadowColor: '#7f5df0',
-    shadowOffset: {
-      width: 0,
-      height: 10,
+    shadow: {
+        shadowColor: '#7f5df0',
+        shadowOffset: {
+            width: 0,
+            height: 10,
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 3.5,
+        elevation: 5,
     },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.5,
-    elevation: 5,
-  },
 });
 
 export default Tabs;

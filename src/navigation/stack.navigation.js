@@ -30,7 +30,7 @@ function AppStack() {
         <Stack.Navigator>
             <Stack.Group
                 screenOptions={{
-                    // headerShown: false,
+                    headerShown: false,
                     contentStyle: { backgroundColor: "#EBEBF6" }
                 }}
             >
