@@ -7,13 +7,12 @@ import MapView, {
   PROVIDER_GOOGLE,
   Marker,
 } from 'react-native-maps';
-import Geocoder from 'react-native-geocoding';
+import Geolocation from 'react-native-geolocation-service';
+import axios from 'axios';
 
 const SelectScreen = () => {
-  const [latitude, setLatitude] = useState();
-  const [longitude, setlongitude] = useState();
-
-  Geocoder.init('AIzaSyD7IfqCPAHjizbBiyG2X2hOc8mUdfuN4hA');
+  const [latitude, setLatitude] = useState(0);
+  const [longitude, setLongitude] = useState(0);
 
   const styles = StyleSheet.create({
     container: {
@@ -29,22 +28,57 @@ const SelectScreen = () => {
     },
   });
 
-  Geocoder.from(37.78825,-122.4324)
-  .then(json => {
-    var addressComponent = json.results[0].address_components[0];
-    console.log(addressComponent.long_name);
-  })
-  .catch(error => console.warn(error));
+  async function requestLocationPermission() {
+    try {
+      const granted = await PermissionsAndroid.request(
+        PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
+        {
+          title: 'Location Permission',
+          message: 'This app needs access to your location',
+          buttonNeutral: 'Ask Me Later',
+          buttonNegative: 'Cancel',
+          buttonPositive: 'OK',
+        },
+      );
+      if (granted === PermissionsAndroid.RESULTS.GRANTED) {
+        console.log('Location permission granted');
+        // Call getCurrentPosition here
+      } else {
+        console.log('Location permission denied');
+      }
+    } catch (err) {
+      console.warn(err);
+    }
+  }
 
-//   useEffect(() => {
-//     if (latitude) {
-//       Geocoder.from(latitude, longitude)
-//         .then(json => {
-//           //   var addressComponent = json.results[0].address_components[0];
-//         })
-//         .catch(error => console.warn(error));
-//     }
-//   }, [latitude, longitude]);
+  requestLocationPermission();
+
+  if (latitude === 0 || longitude === 0) {
+    Geolocation.getCurrentPosition(
+      position => {
+        setLongitude(position.coords.longitude);
+        setLatitude(position.coords.latitude);
+        // Do something with the position here
+      },
+      error => {
+        console.log(error);
+      },
+      {enableHighAccuracy: true, timeout: 20000, maximumAge: 1000},
+    );
+  }
+
+
+  useEffect(()=>{
+    axios.get(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${latitude},${longitude}&key=AIzaSyD7IfqCPAHjizbBiyG2X2hOc8mUdfuN4hA`)
+    .then(response => {
+      console.log("responsee",response.data.results[0].formatted_address);
+      // Do something with the location name here
+    })
+    .catch(error => {
+      console.log("error",error);
+    });
+  }, [latitude , longitude])
+
 
   return (
     <View flex={1}>
@@ -53,22 +87,50 @@ const SelectScreen = () => {
           // provider={PROVIDER_GOOGLE} // remove if not using Google Maps
           style={styles.map}
           region={{
-            latitude: 24.860966,
-            longitude: 66.990501,
+            latitude: latitude,
+            longitude: longitude,
             latitudeDelta: 1,
             longitudeDelta: 0.0121,
-          }}
-          onClick={e => {
-            alert('ee', e);
           }}>
           <Marker
             draggable
             // key={index}
-            coordinate={{latitude: 24.860966, longitude: 66.990501}}
+            coordinate={{
+              latitude: latitude,
+              longitude: longitude,
+            }}
             title={'North Karachi'}
             description={'Potholes: 80%'}
             onDragEnd={e => {
-              setlongitude(e.nativeEvent.coordinate.longitude),
+              setLongitude(e.nativeEvent.coordinate.longitude),
+                setLatitude(e.nativeEvent.coordinate.latitude);
+            }}
+          />
+            <Marker
+            draggable
+            // key={index}
+            coordinate={{
+              latitude: latitude,
+              longitude: longitude,
+            }}
+            title={'North Karachi'}
+            description={'Potholes: 80%'}
+            onDragEnd={e => {
+              setLongitude(e.nativeEvent.coordinate.longitude),
+                setLatitude(e.nativeEvent.coordinate.latitude);
+            }}
+          />
+           <Marker
+            draggable
+            // key={index}
+            coordinate={{
+              latitude: latitude,
+              longitude: longitude,
+            }}
+            title={'North Karachi'}
+            description={'Potholes: 80%'}
+            onDragEnd={e => {
+              setLongitude(e.nativeEvent.coordinate.longitude),
                 setLatitude(e.nativeEvent.coordinate.latitude);
             }}
           />
