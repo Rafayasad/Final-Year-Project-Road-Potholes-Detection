@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 export const locationDataSlice = createSlice({
     name: "location",
     initialState: {
-        data: {}
+        data: []
     },
     reducers: {
         setLocationData: (state, action) => {

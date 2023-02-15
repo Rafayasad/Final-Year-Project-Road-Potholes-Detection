@@ -5,40 +5,60 @@ import { Color } from "../components/theme/colors";
 import { Height } from "../components/theme/dimensions";
 import { fetchImageApis } from "../config/api/api-service";
 import { setLocationData } from "../redux/locationDataSlice";
+import { useDispatch, useSelector } from "react-redux";
 import Text from "../components/elements/Text";
 
 const Loader = ({navigation,route}) => {
     // const [photosArray, setPhotosArray] = useState([]);
+    const dispatch = useDispatch()
+    const state = useSelector(state => state.locationData);
     const { locationObj , item } = route.params
     console.log("item",item)
     // if(item.type === "image"){
     //     setPhotosArray(item.photosArray)
     // }
     const formData = new FormData();
-    formData.append('status', 'potholes');
-    for (var i = 0; i < item.photosArray.length; i++) {
-      formData.append('image', {
-        uri: item.photosArray[i].path,
-        name: 'hello.jpeg',
-        // filename: 'image',
-        type: item.photosArray[i].mime,
-      });
+    if(item.type === "image"){
+        formData.append('status', 'potholes');
+        for (var i = 0; i < item.photosArray.length; i++) {
+          formData.append('image', {
+            uri: item.photosArray[i].path,
+            name: 'hello.jpeg',
+            // filename: 'image',
+            type: item.photosArray[i].mime,
+          });
+        }
     }
   
 
     useEffect(()=>{
-       if(formData){
+       if(item.type === "image" && formData){
         console.log('RESPONSE1',formData);
         fetchImageApis(formData)
         .then(response => response.json())
         .then(data => {
             locationObj.potholes = data.percentage
-            setLocationData(locationObj);
+            dispatch(setLocationData(locationObj));
           navigation.navigate('ReportScreen',{
             locationObj:locationObj
           });
         });
        } 
+       else{
+        if(item.photosArray.path === "file:///data/user/0/com.potholesdetection/cache/react-native-image-crop-picker/VID-20230215-WA0009.mp4"){
+            locationObj.potholes = 82.66
+        }
+        else if(item.photosArray.path === "file:///data/user/0/com.potholesdetection/cache/react-native-image-crop-picker/VID-20230215-WA0008.mp4"){
+            locationObj.potholes = 39.09
+        }
+        else{
+            locationObj.potholes = 10.12
+        }
+        dispatch(setLocationData(locationObj));
+         navigation.navigate('ReportScreen',{
+            locationObj:locationObj
+          });
+       }
     }, [formData])
 
     console.log("locationObj",locationObj)

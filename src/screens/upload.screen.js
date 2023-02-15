@@ -71,8 +71,11 @@ export default function UploadScreen(props) {
       mediaType: 'video',
     })
       .then(video => {
-        console.log(video);
-        setVideo(video);
+        console.log(video.path);
+        navigation.navigate('SelectedScreen', {
+          item: {photosArray: video, type: 'video'},
+        });
+        // setVideo(video);
       })
       .catch(err => {
         console.log('Error==>', err);
@@ -83,8 +86,10 @@ export default function UploadScreen(props) {
     ImagePicker.openCamera({
       mediaType: 'video',
     })
-      .then(image => {
-        console.log(image);
+      .then(video => {
+        navigation.navigate('SelectedScreen', {
+          item: {photosArray: video, type: 'video'},
+        });
       })
       .catch(err => {
         console.log('Error==>', err);

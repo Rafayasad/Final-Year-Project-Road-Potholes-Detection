@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from 'react';
 import {
-  Text,
   View,
   StyleSheet,
   KeyboardAvoidingView,
@@ -19,16 +18,20 @@ import axios from 'axios';
 import {ScrollView, TextInput} from 'react-native-gesture-handler';
 import {useDispatch, useSelector} from 'react-redux';
 import {setLocationData} from '../redux/locationDataSlice';
+import Text from '../components/elements/Text';
+import { Height } from '../components/theme/dimensions';
 
 const SelectScreen = ({navigation, route}) => {
-
-  const { item } = route.params
-  const [latitude, setLatitude] = useState(0);
-  const [longitude, setLongitude] = useState(0);
+  const {item} = route.params;
+  const [latitude, setLatitude] = useState(24.8607);
+  const [longitude, setLongitude] = useState(67.0011);
   const [location, setLocation] = useState('');
   const date = new Date();
   const [currentDate, setCurrentDate] = useState(date.getDate());
-  console.log("currentDate",date.getDate() + date.getMonth()+1 + date.getFullYear())
+  console.log(
+    'currentDate',
+    date.getDate() + date.getMonth() + 1 + date.getFullYear(),
+  );
 
   const dispatch = useDispatch();
 
@@ -71,9 +74,10 @@ const SelectScreen = ({navigation, route}) => {
 
   requestLocationPermission();
 
-  if (latitude === 0 || longitude === 0) {
+  if (latitude === 24.8607 || longitude === 67.0011) {
     Geolocation.getCurrentPosition(
       position => {
+        console.warn('position.coords.longitude', position.coords.longitude);
         setLongitude(position.coords.longitude);
         setLatitude(position.coords.latitude);
         // Do something with the position here
@@ -104,14 +108,14 @@ const SelectScreen = ({navigation, route}) => {
       latitude,
       longitude,
       location,
-      date : `${date.getDate()}-${date.getMonth()+1}-${date.getFullYear()}`
+      date: `${date.getDate()}-${date.getMonth() + 1}-${date.getFullYear()}`,
     };
     // setLocationData(locationObj);
     setLocation('');
-    navigation.navigate("Loader",{
-      locationObj:locationObj,
-      item:item
-    })
+    navigation.navigate('Loader', {
+      locationObj: locationObj,
+      item: item,
+    });
   };
 
   return (
@@ -138,8 +142,6 @@ const SelectScreen = ({navigation, route}) => {
                 latitude: latitude,
                 longitude: longitude,
               }}
-              title={'North Karachi'}
-              description={'Potholes: 80%'}
               onDragEnd={e => {
                 setLongitude(e.nativeEvent.coordinate.longitude),
                   setLatitude(e.nativeEvent.coordinate.latitude);
@@ -147,24 +149,37 @@ const SelectScreen = ({navigation, route}) => {
             />
           </MapView>
           <View style={{marginTop: Dimensions.get('window').height * 0.02}}>
-            <TextInput
-              placeholder="Enter Location"
-              value={location}
-              onChangeText={text => setLocation(text)}
+            <View
               style={{
-                backgroundColor: Color.lightColor,
-                width: Dimensions.get('window').width * 0.95,
-                borderRadius: Dimensions.get('window').width * 0.02,
-                alignSelf: 'center',
-              }}
-            />
+                height: 90,
+                justifyContent: 'space-around',
+                paddingHorizontal:5
+              }}>
+              <Text title="Enter Selected Location Name" size="sm" />
+              <TextInput
+                placeholder="Enter Location"
+                value={location}
+                onChangeText={text => setLocation(text)}
+                style={{
+                  backgroundColor: Color.lightColor,
+                  width: Dimensions.get('window').width * 0.95,
+                  borderRadius: Dimensions.get('window').width * 0.02,
+                  alignSelf: 'center',
+                }}
+              />
+            </View>
           </View>
           <View
             style={{
-              alignSelf: 'center',
-              marginTop: Dimensions.get('window').height * 0.10,
+              marginTop: Height*0.15,
             }}>
-            <TouchableOpacity
+            <FlatButton
+              text={'Submt'}
+              bgColor={Color.btnBg}
+              textColor={Color.lightColor}
+              callBack={handleSubmit}
+            />
+            {/* <TouchableOpacity
               onPress={handleSubmit}
               style={{
                 backgroundColor: Color.dangerColor,
@@ -173,10 +188,8 @@ const SelectScreen = ({navigation, route}) => {
                 width: Dimensions.get('window').width * 0.95,
                 alignItems: 'center',
               }}>
-              <Text style={{color: Color.darkColor, fontSize: 16}}>
-                Submit
-              </Text>
-            </TouchableOpacity>
+              <Text style={{color: Color.darkColor, fontSize: 16}}>Submit</Text>
+            </TouchableOpacity> */}
           </View>
           {/* </KeyboardAvoidingView> */}
         </View>
