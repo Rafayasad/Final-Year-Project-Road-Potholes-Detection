@@ -16,7 +16,7 @@ const SplashScreen = () => {
       }}>
       <Image source={Logo} />
       <View style={{marginTop: 20}}>
-        <Text weight="heavy" title="Poth Holes Detection" size="xl" />
+        <Text weight="heavy" title="Pot Holes Detection" size="xl" />
       </View>
     </View>
   );

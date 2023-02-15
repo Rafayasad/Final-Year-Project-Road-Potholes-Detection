@@ -7,6 +7,7 @@ import Report from '../screens/reports.screen';
 import SelectScreen from '../screens/selectLocation';
 import UploadScreen from '../screens/upload.screen';
 import WelcomeScreen from '../screens/WelcomeScreen';
+import Loader from '../screens/loader.screen';
 import Tabs from './bottom_tab.navigation';
 
 const Stack = createNativeStackNavigator();
@@ -40,6 +41,8 @@ function AppStack() {
                 <Stack.Screen options={{ header: () => <Header title={"DETECT POTHOLES"} /> }} name="UploadScreen" component={UploadScreen} />
                 <Stack.Screen options={{ header: () => <Header title={"DETECTION REPORT"} /> }} name="ReportScreen" component={Report} />
                 <Stack.Screen options={{ header: () => <Header title={"SelectedScreen"} /> }} name="SelectedScreen" component={SelectScreen} />
+                <Stack.Screen options={{ header: () => <Header title={"Loader"} /> }} name="Loader" component={Loader} />
+                
             </Stack.Group>
         </Stack.Navigator>
     )
