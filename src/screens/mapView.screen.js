@@ -58,8 +58,8 @@ export default function Map() {
         region={{
           latitude: 24.8607,
           longitude: 67.0011,
-          latitudeDelta: 0.015,
-          longitudeDelta: 0.0121,
+          latitudeDelta: 1,
+          longitudeDelta: 1,
         }}>
           {
             data.map((item)=>{
@@ -78,7 +78,7 @@ export default function Map() {
             })
           }
            {
-          state.data &&  
+          state.data.potholes &&  
                 <Marker
                 draggable
                 // key={index}

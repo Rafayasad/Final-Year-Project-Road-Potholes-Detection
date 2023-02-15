@@ -99,7 +99,7 @@ export default function Recents(props) {
           );
         })}
 
-        {state.data &&
+        {state.data.potholes &&
 
               <View
                 style={{
